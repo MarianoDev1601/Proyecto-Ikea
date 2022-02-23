@@ -16,7 +16,7 @@ public class Main {
     public static void main(String[] args) {
         Functions func = new Functions();
         Node data = new Node(1,8,1,1,1,1);
-        func.write_csv(data);
-        
+        //func.write_csv(data);
+        func.turnOnMenu();
     }  
 }

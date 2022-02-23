@@ -1,6 +1,7 @@
 package Main;
 
 import com.csvreader.CsvWriter;
+import interfazSO.interfazSoMain;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
@@ -19,9 +20,9 @@ public class Functions {
             csvwriter.writeRecord(data);
             aux = aux.getpNext();
             csvwriter.close();
-            JOptionPane.showMessageDialog(null, "Informacion guardada con exito");
+            JOptionPane.showMessageDialog(null, "Informacion guardada con exito", "Sistema de guardado.", JOptionPane.INFORMATION_MESSAGE);
         } catch (Exception err) {
-            JOptionPane.showMessageDialog(null, "Error al guardar la información");
+            JOptionPane.showMessageDialog(null, "Error al guardar la información", "Sistema de seguridad.", JOptionPane.ERROR_MESSAGE);
         }
     }
 
@@ -57,10 +58,62 @@ public class Functions {
                     
                 }
                 br.close();
-                JOptionPane.showMessageDialog(null, "Exito al leer.");
+                JOptionPane.showMessageDialog(null, "Exito al leer.", "Sistema de guardado.", JOptionPane.INFORMATION_MESSAGE);
             }
         } catch (Exception ex) {
-            JOptionPane.showMessageDialog(null, "Error al leer.");
+            JOptionPane.showMessageDialog(null, "Error al leer.", "Sistema de seguridad.", JOptionPane.ERROR_MESSAGE);
         }
     }
+    
+    public void turnOnMenu(){
+        interfazSoMain menu = new interfazSoMain();
+        System.out.println("La aplicacion se esta iniciando");
+        try {
+            menu.setVisible(true);
+            System.out.println("La aplicacion inicio correctamente");
+        }catch (Exception e){
+            JOptionPane.showMessageDialog(null, "Error de inicio.", "Sistema de seguridad.", JOptionPane.ERROR_MESSAGE);
+        }
+    }
+   
+    public String contratar(int maxProductor, String productorN, String areaProductor){
+        try {
+            System.out.println("Agregar un productor de " + areaProductor +":");
+            if(Integer.parseInt(productorN) < maxProductor){  // La empresa no puede costear mas de este numero de productores del tipo asignado.
+                System.out.println("\n >> Cantidad de Productores de " + areaProductor + " anterior: " + Integer.parseInt(productorN) + "\n >> Cantidad de Productores de " + areaProductor +  " actualizada: " + (Integer.parseInt(productorN) + 1) + "\n");
+                productorN = Integer.toString(Integer.parseInt(productorN) + 1); // Añade un nuevo productor
+            }else{
+                System.out.println("Operacion cancelada. Cantidad maxima de productores alcanzada. Max.Op: " + maxProductor);   // Se tiene el numero maximo de productores contemplados por la empresa
+                JOptionPane.showMessageDialog(null, "Usuario, no hay presupuesto para contratar a mas de " + maxProductor + " productores en el area de " + areaProductor, "Oficina de administracion IKEA.", JOptionPane.WARNING_MESSAGE);
+            }
+        }catch(Exception e){
+             JOptionPane.showMessageDialog(null, "Error en ejecución de proceso.","Sistema de seguridad.", JOptionPane.ERROR_MESSAGE); // Para posibles errores
+        }
+        return productorN;
+    }
+    
+    public String despedir(String productorN, String areaProductor){
+        try {
+            System.out.println("Despedir un productor de " + areaProductor +":");
+            if(Integer.parseInt(productorN) > 1){  // La empresa debe tener almenos un productor
+                System.out.println("\n >> Cantidad de Productores de " + areaProductor + " anterior: " + Integer.parseInt(productorN) + "\n >> Cantidad de Productores de " + areaProductor + " actualizada: " + (Integer.parseInt(productorN) - 1) + "\n");
+                productorN = Integer.toString(Integer.parseInt(productorN) - 1); // quita a un productor
+            }else{
+                System.out.println("Operacion cancelada. No puedes dejar a la empresa sin productores de " + areaProductor + ".");   // Se tiene el numero minimo de productores contemplados por la empresa
+                JOptionPane.showMessageDialog(null, "Usuario, no puedes dejar a la empresa sin productores de " + areaProductor + "\nSugerencia: Siempre manten almenos un productor de cada clase.", "Oficina de administracion IKEA.", JOptionPane.WARNING_MESSAGE);
+            }
+        }catch(Exception e){
+             JOptionPane.showMessageDialog(null, "Error en ejecución de proceso.","Sistema de seguridad.", JOptionPane.ERROR_MESSAGE);
+        }
+        return productorN;
+    }
 }
+
+//        System.out.println("Agregar un productor de Tablas:");
+//        if(Integer.parseInt(pawCount.getText()) <= 4){  // La empresa no puede costear mas de 4 productores de patas.
+//            System.out.println("\n >> Cantidad de Productores de tablas anterior: " + Integer.parseInt(pawCount.getText()) + "\n >> Cantidad de Productores de tablas actualizada: " + (Integer.parseInt(pawCount.getText()) + 1) + "\n");
+//            pawCount.setText(Integer.toString(Integer.parseInt(pawCount.getText()) + 1)); // Añade un nuevo productor
+//        }else{
+//            System.out.println("Operacion cancelada. Cantidad maxima de productores alcanzada.");   // Se tiene el numero maximo de productores contemplados por la empresa
+//            JOptionPane.showMessageDialog(null, "Usuario, no hay presupuesto para contratar a mas de 4 productores en esta area", "Oficina de administracion IKEA.", JOptionPane.WARNING_MESSAGE);
+//      }

@@ -5,6 +5,9 @@
  */
 package interfazSO;
 
+import Main.Functions;
+import java.awt.Image;
+import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 
@@ -18,13 +21,19 @@ public class interfazSoMain extends javax.swing.JFrame {
      * Creates new form interfazSoMain
      */
     
-    boolean simulation = false;
+    boolean simulation = false; // Detecta si la simulacion esta en movimiento o detenida.
+    Functions fun = new Functions();
     
     public interfazSoMain() {
         initComponents();
-        this.setResizable(false);
-        this.setLocationRelativeTo(null);
-        setIconImage(new ImageIcon(getClass().getResource("/interfazSOComponents/logo.png")).getImage());
+        this.setResizable(false); // No se puede cambiar de tamaño la ventana
+        this.setLocationRelativeTo(null);  // Se abre en el centro de toda la pantalla 
+        ImageIcon imageTitle = new ImageIcon(getClass().getResource("/interfazSOComponents/ikea_logo_icon.png")); 
+        Icon fondoTitle = new ImageIcon(imageTitle.getImage().getScaledInstance(300, 200, Image.SCALE_DEFAULT));   // Ajustar el tamaño de la imagen superior
+        logo.setIcon(fondoTitle);
+        this.repaint();
+        setIconImage(new ImageIcon(getClass().getResource("/interfazSOComponents/logo.png")).getImage());         // Icono de la barra inferior
+        
     }
 
     /**
@@ -37,32 +46,14 @@ public class interfazSoMain extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanelPrincipal = new javax.swing.JPanel();
-        registers = new javax.swing.JPanel();
-        produce = new java.awt.Label();
-        assembler = new java.awt.Label();
-        productor = new java.awt.Label();
-        produceScrew = new javax.swing.JPanel();
-        screwCount = new javax.swing.JTextField();
-        screwName = new javax.swing.JLabel();
-        produceTable = new javax.swing.JPanel();
-        tableCount = new javax.swing.JTextField();
-        tableName = new javax.swing.JLabel();
-        producePaw = new javax.swing.JPanel();
-        pawCount = new javax.swing.JTextField();
-        pawName = new javax.swing.JLabel();
-        productPaw = new javax.swing.JPanel();
-        pPawCount = new javax.swing.JTextField();
-        pPaw = new javax.swing.JLabel();
-        productScrew = new javax.swing.JPanel();
-        pScrewCount = new javax.swing.JTextField();
-        pScrew = new javax.swing.JLabel();
-        productTable = new javax.swing.JPanel();
-        pTableCount = new javax.swing.JTextField();
-        jLabel11 = new javax.swing.JLabel();
-        assemblerData = new javax.swing.JPanel();
-        assemblerCount = new javax.swing.JTextField();
-        assemblerName = new javax.swing.JLabel();
-        simulate = new javax.swing.JToggleButton();
+        registerinformation = new javax.swing.JPanel();
+        infoPanel = new javax.swing.JPanel();
+        bossInformed = new javax.swing.JLabel();
+        maganerInformer = new javax.swing.JLabel();
+        BossInfo = new javax.swing.JLabel();
+        ManagerInfo = new javax.swing.JLabel();
+        Info = new javax.swing.JLabel();
+        reset = new javax.swing.JButton();
         barBottom = new javax.swing.JPanel();
         tRemaing = new javax.swing.JLabel();
         domsdayClock = new javax.swing.JTextField();
@@ -72,296 +63,154 @@ public class interfazSoMain extends javax.swing.JFrame {
         time = new javax.swing.JPanel();
         timer = new javax.swing.JTextField();
         todayIs = new javax.swing.JLabel();
-        reset = new javax.swing.JButton();
-        add = new javax.swing.JButton();
-        delete = new javax.swing.JButton();
-        logo = new javax.swing.JLabel();
-        infoPanel = new javax.swing.JPanel();
-        bossInformed = new javax.swing.JLabel();
-        maganerInformer = new javax.swing.JLabel();
-        Info = new javax.swing.JLabel();
         minizar = new javax.swing.JButton();
         cerrar = new javax.swing.JButton();
+        registerProducers = new javax.swing.JPanel();
+        produceScrew = new javax.swing.JPanel();
+        screwCount = new javax.swing.JTextField();
+        screwName = new javax.swing.JLabel();
+        produceTable = new javax.swing.JPanel();
+        tableCount = new javax.swing.JTextField();
+        tableName = new javax.swing.JLabel();
+        producePaw = new javax.swing.JPanel();
+        pawCount = new javax.swing.JTextField();
+        pawName = new javax.swing.JLabel();
+        assemblerData = new javax.swing.JPanel();
+        assemblerCount = new javax.swing.JTextField();
+        assemblerName = new javax.swing.JLabel();
+        productor = new java.awt.Label();
+        assembler = new java.awt.Label();
+        addPaw = new javax.swing.JButton();
+        addTable = new javax.swing.JButton();
+        addScrew = new javax.swing.JButton();
+        addAsem = new javax.swing.JButton();
+        popAsem = new javax.swing.JButton();
+        popScrew = new javax.swing.JButton();
+        popTable = new javax.swing.JButton();
+        popPaw = new javax.swing.JButton();
+        registersProducts1 = new javax.swing.JPanel();
+        produce1 = new java.awt.Label();
+        productPaw1 = new javax.swing.JPanel();
+        pPawCount1 = new javax.swing.JTextField();
+        pPaw1 = new javax.swing.JLabel();
+        productScrew1 = new javax.swing.JPanel();
+        pScrewCount1 = new javax.swing.JTextField();
+        pScrew1 = new javax.swing.JLabel();
+        productTable1 = new javax.swing.JPanel();
+        pTableCount1 = new javax.swing.JTextField();
+        jLabel12 = new javax.swing.JLabel();
+        simulate = new javax.swing.JToggleButton();
+        logo = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("SOIkea");
         setUndecorated(true);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jPanelPrincipal.setBackground(new java.awt.Color(204, 204, 204));
+        jPanelPrincipal.setBackground(new java.awt.Color(0, 0, 51));
         jPanelPrincipal.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         jPanelPrincipal.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        registers.setBackground(new java.awt.Color(255, 204, 102));
-        registers.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        registers.setForeground(new java.awt.Color(51, 51, 51));
-        registers.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        registerinformation.setBackground(new java.awt.Color(255, 204, 102));
+        registerinformation.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        registerinformation.setForeground(new java.awt.Color(51, 51, 51));
+        registerinformation.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        produce.setFont(new java.awt.Font("Roboto", 1, 14)); // NOI18N
-        produce.setText("Productos:");
-        registers.add(produce, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 20, -1, -1));
+        infoPanel.setBackground(new java.awt.Color(204, 204, 204));
+        infoPanel.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        infoPanel.setForeground(new java.awt.Color(0, 0, 0));
 
-        assembler.setFont(new java.awt.Font("Roboto", 1, 14)); // NOI18N
-        assembler.setText("Ensambladores:");
-        registers.add(assembler, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 380, -1, -1));
+        bossInformed.setBackground(new java.awt.Color(204, 204, 204));
+        bossInformed.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
+        bossInformed.setForeground(new java.awt.Color(0, 0, 0));
+        bossInformed.setText("El Jefe:");
+        bossInformed.setToolTipText("");
 
-        productor.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        productor.setFont(new java.awt.Font("Roboto", 1, 14)); // NOI18N
-        productor.setText("Productores:");
-        registers.add(productor, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 200, -1, -1));
+        maganerInformer.setBackground(new java.awt.Color(204, 204, 204));
+        maganerInformer.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
+        maganerInformer.setForeground(new java.awt.Color(0, 0, 0));
+        maganerInformer.setText("El gerente:");
 
-        produceScrew.setBackground(new java.awt.Color(255, 255, 255));
-        produceScrew.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        BossInfo.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
+        BossInfo.setForeground(new java.awt.Color(0, 0, 0));
+        BossInfo.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        BossInfo.setText("Dumiendo...");
 
-        screwCount.setEditable(false);
-        screwCount.setFont(new java.awt.Font("Lucida Sans Typewriter", 1, 12)); // NOI18N
-        screwCount.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        screwCount.setText("0");
+        ManagerInfo.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
+        ManagerInfo.setForeground(new java.awt.Color(0, 0, 0));
+        ManagerInfo.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        ManagerInfo.setText("Dumiendo...");
 
-        screwName.setFont(new java.awt.Font("Roboto", 0, 12)); // NOI18N
-        screwName.setForeground(new java.awt.Color(0, 0, 0));
-        screwName.setText("Tornillos:");
-        screwName.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
-
-        javax.swing.GroupLayout produceScrewLayout = new javax.swing.GroupLayout(produceScrew);
-        produceScrew.setLayout(produceScrewLayout);
-        produceScrewLayout.setHorizontalGroup(
-            produceScrewLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, produceScrewLayout.createSequentialGroup()
+        javax.swing.GroupLayout infoPanelLayout = new javax.swing.GroupLayout(infoPanel);
+        infoPanel.setLayout(infoPanelLayout);
+        infoPanelLayout.setHorizontalGroup(
+            infoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(infoPanelLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(screwName)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 31, Short.MAX_VALUE)
-                .addComponent(screwCount, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(infoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(infoPanelLayout.createSequentialGroup()
+                        .addGroup(infoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(maganerInformer, javax.swing.GroupLayout.PREFERRED_SIZE, 184, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(bossInformed, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 184, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, infoPanelLayout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addGroup(infoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(BossInfo, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(ManagerInfo, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addContainerGap())
         );
-        produceScrewLayout.setVerticalGroup(
-            produceScrewLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(produceScrewLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                .addComponent(screwCount, javax.swing.GroupLayout.DEFAULT_SIZE, 30, Short.MAX_VALUE)
-                .addComponent(screwName))
-        );
-
-        registers.add(produceScrew, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 330, 190, -1));
-
-        produceTable.setBackground(new java.awt.Color(255, 255, 255));
-        produceTable.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
-
-        tableCount.setEditable(false);
-        tableCount.setFont(new java.awt.Font("Lucida Sans Typewriter", 1, 12)); // NOI18N
-        tableCount.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        tableCount.setText("0");
-
-        tableName.setFont(new java.awt.Font("Roboto", 0, 12)); // NOI18N
-        tableName.setForeground(new java.awt.Color(0, 0, 0));
-        tableName.setText("Tablas:");
-        tableName.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
-
-        javax.swing.GroupLayout produceTableLayout = new javax.swing.GroupLayout(produceTable);
-        produceTable.setLayout(produceTableLayout);
-        produceTableLayout.setHorizontalGroup(
-            produceTableLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, produceTableLayout.createSequentialGroup()
+        infoPanelLayout.setVerticalGroup(
+            infoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(infoPanelLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(tableName)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 41, Short.MAX_VALUE)
-                .addComponent(tableCount, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE))
-        );
-        produceTableLayout.setVerticalGroup(
-            produceTableLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(produceTableLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                .addComponent(tableCount, javax.swing.GroupLayout.DEFAULT_SIZE, 30, Short.MAX_VALUE)
-                .addComponent(tableName))
-        );
-
-        registers.add(produceTable, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 280, 190, -1));
-
-        producePaw.setBackground(new java.awt.Color(255, 255, 255));
-        producePaw.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
-
-        pawCount.setEditable(false);
-        pawCount.setFont(new java.awt.Font("Lucida Sans Typewriter", 1, 12)); // NOI18N
-        pawCount.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        pawCount.setText("0");
-
-        pawName.setFont(new java.awt.Font("Roboto", 0, 12)); // NOI18N
-        pawName.setForeground(new java.awt.Color(0, 0, 0));
-        pawName.setText("Patas:");
-        pawName.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
-
-        javax.swing.GroupLayout producePawLayout = new javax.swing.GroupLayout(producePaw);
-        producePaw.setLayout(producePawLayout);
-        producePawLayout.setHorizontalGroup(
-            producePawLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, producePawLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(pawName)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 46, Short.MAX_VALUE)
-                .addComponent(pawCount, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE))
-        );
-        producePawLayout.setVerticalGroup(
-            producePawLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(producePawLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                .addComponent(pawCount, javax.swing.GroupLayout.DEFAULT_SIZE, 30, Short.MAX_VALUE)
-                .addComponent(pawName))
+                .addComponent(bossInformed, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(11, 11, 11)
+                .addComponent(BossInfo)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(maganerInformer, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(ManagerInfo)
+                .addContainerGap())
         );
 
-        registers.add(producePaw, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 230, 190, -1));
+        registerinformation.add(infoPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 50, 210, 140));
 
-        productPaw.setBackground(new java.awt.Color(255, 255, 255));
-        productPaw.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        Info.setBackground(new java.awt.Color(0, 0, 0));
+        Info.setFont(new java.awt.Font("Roboto", 1, 16)); // NOI18N
+        Info.setForeground(new java.awt.Color(0, 0, 0));
+        Info.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        Info.setText("Informacion:");
+        Info.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        registerinformation.add(Info, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 20, 150, 20));
 
-        pPawCount.setEditable(false);
-        pPawCount.setFont(new java.awt.Font("Lucida Sans Typewriter", 1, 12)); // NOI18N
-        pPawCount.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        pPawCount.setText("0");
-
-        pPaw.setFont(new java.awt.Font("Roboto", 0, 12)); // NOI18N
-        pPaw.setForeground(new java.awt.Color(0, 0, 0));
-        pPaw.setText("Patas:");
-        pPaw.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
-
-        javax.swing.GroupLayout productPawLayout = new javax.swing.GroupLayout(productPaw);
-        productPaw.setLayout(productPawLayout);
-        productPawLayout.setHorizontalGroup(
-            productPawLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, productPawLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(pPaw)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 46, Short.MAX_VALUE)
-                .addComponent(pPawCount, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE))
-        );
-        productPawLayout.setVerticalGroup(
-            productPawLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(productPawLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                .addComponent(pPawCount, javax.swing.GroupLayout.DEFAULT_SIZE, 30, Short.MAX_VALUE)
-                .addComponent(pPaw))
-        );
-
-        registers.add(productPaw, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 50, 190, -1));
-
-        productScrew.setBackground(new java.awt.Color(255, 255, 255));
-        productScrew.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
-
-        pScrewCount.setEditable(false);
-        pScrewCount.setFont(new java.awt.Font("Lucida Sans Typewriter", 1, 12)); // NOI18N
-        pScrewCount.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        pScrewCount.setText("0");
-
-        pScrew.setFont(new java.awt.Font("Roboto", 0, 12)); // NOI18N
-        pScrew.setForeground(new java.awt.Color(0, 0, 0));
-        pScrew.setText("Tornillos:");
-        pScrew.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
-
-        javax.swing.GroupLayout productScrewLayout = new javax.swing.GroupLayout(productScrew);
-        productScrew.setLayout(productScrewLayout);
-        productScrewLayout.setHorizontalGroup(
-            productScrewLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, productScrewLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(pScrew)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 31, Short.MAX_VALUE)
-                .addComponent(pScrewCount, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE))
-        );
-        productScrewLayout.setVerticalGroup(
-            productScrewLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(productScrewLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                .addComponent(pScrewCount, javax.swing.GroupLayout.DEFAULT_SIZE, 30, Short.MAX_VALUE)
-                .addComponent(pScrew))
-        );
-
-        registers.add(productScrew, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 150, 190, -1));
-
-        productTable.setBackground(new java.awt.Color(255, 255, 255));
-        productTable.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
-
-        pTableCount.setEditable(false);
-        pTableCount.setFont(new java.awt.Font("Lucida Sans Typewriter", 1, 12)); // NOI18N
-        pTableCount.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        pTableCount.setText("0");
-
-        jLabel11.setFont(new java.awt.Font("Roboto", 0, 12)); // NOI18N
-        jLabel11.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel11.setText("Tablas:");
-        jLabel11.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
-
-        javax.swing.GroupLayout productTableLayout = new javax.swing.GroupLayout(productTable);
-        productTable.setLayout(productTableLayout);
-        productTableLayout.setHorizontalGroup(
-            productTableLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, productTableLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel11)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 41, Short.MAX_VALUE)
-                .addComponent(pTableCount, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE))
-        );
-        productTableLayout.setVerticalGroup(
-            productTableLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(productTableLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                .addComponent(pTableCount, javax.swing.GroupLayout.DEFAULT_SIZE, 30, Short.MAX_VALUE)
-                .addComponent(jLabel11))
-        );
-
-        registers.add(productTable, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 100, 190, -1));
-
-        assemblerData.setBackground(new java.awt.Color(255, 255, 255));
-        assemblerData.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
-
-        assemblerCount.setEditable(false);
-        assemblerCount.setFont(new java.awt.Font("Lucida Sans Typewriter", 1, 12)); // NOI18N
-        assemblerCount.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        assemblerCount.setText("0");
-
-        assemblerName.setFont(new java.awt.Font("Roboto", 0, 12)); // NOI18N
-        assemblerName.setForeground(new java.awt.Color(0, 0, 0));
-        assemblerName.setText("Trabajando:");
-        assemblerName.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
-
-        javax.swing.GroupLayout assemblerDataLayout = new javax.swing.GroupLayout(assemblerData);
-        assemblerData.setLayout(assemblerDataLayout);
-        assemblerDataLayout.setHorizontalGroup(
-            assemblerDataLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, assemblerDataLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(assemblerName)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 15, Short.MAX_VALUE)
-                .addComponent(assemblerCount, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE))
-        );
-        assemblerDataLayout.setVerticalGroup(
-            assemblerDataLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(assemblerDataLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                .addComponent(assemblerCount, javax.swing.GroupLayout.DEFAULT_SIZE, 30, Short.MAX_VALUE)
-                .addComponent(assemblerName))
-        );
-
-        registers.add(assemblerData, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 410, 190, -1));
-
-        simulate.setIcon(new javax.swing.ImageIcon(getClass().getResource("/interfazSOComponents/stop.png"))); // NOI18N
-        simulate.setBorderPainted(false);
-        simulate.setContentAreaFilled(false);
-        simulate.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        simulate.setPressedIcon(new javax.swing.ImageIcon(getClass().getResource("/interfazSOComponents/iniciarPisado.png"))); // NOI18N
-        simulate.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/interfazSOComponents/stopPisado.png"))); // NOI18N
-        simulate.setRolloverSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/interfazSOComponents/iniciarPisado.png"))); // NOI18N
-        simulate.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/interfazSOComponents/iniciarEjecucion.png"))); // NOI18N
-        simulate.addActionListener(new java.awt.event.ActionListener() {
+        reset.setFont(new java.awt.Font("RomanC", 1, 18)); // NOI18N
+        reset.setIcon(new javax.swing.ImageIcon(getClass().getResource("/interfazSOComponents/reset .png"))); // NOI18N
+        reset.setBorderPainted(false);
+        reset.setContentAreaFilled(false);
+        reset.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        reset.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        reset.setPressedIcon(new javax.swing.ImageIcon(getClass().getResource("/interfazSOComponents/resetPisado.png"))); // NOI18N
+        reset.setVerticalAlignment(javax.swing.SwingConstants.TOP);
+        reset.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        reset.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                simulateActionPerformed(evt);
+                resetActionPerformed(evt);
             }
         });
-        registers.add(simulate, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 470, 138, 138));
+        registerinformation.add(reset, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 200, 130, -1));
 
-        jPanelPrincipal.add(registers, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 230, 630));
+        jPanelPrincipal.add(registerinformation, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 60, 250, 370));
 
         barBottom.setBackground(new java.awt.Color(153, 204, 255));
         barBottom.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
         tRemaing.setFont(new java.awt.Font("Roboto", 3, 12)); // NOI18N
-        tRemaing.setForeground(new java.awt.Color(0, 0, 0));
         tRemaing.setText("Tiempo restante: ");
 
         domsdayClock.setEditable(false);
         domsdayClock.setBackground(new java.awt.Color(153, 255, 255));
         domsdayClock.setFont(new java.awt.Font("Lucida Sans Typewriter", 1, 12)); // NOI18N
-        domsdayClock.setForeground(new java.awt.Color(0, 0, 0));
         domsdayClock.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         domsdayClock.setText("0");
 
@@ -371,12 +220,10 @@ public class interfazSoMain extends javax.swing.JFrame {
         PAHLCount.setEditable(false);
         PAHLCount.setBackground(new java.awt.Color(0, 255, 153));
         PAHLCount.setFont(new java.awt.Font("Lucida Sans Typewriter", 1, 12)); // NOI18N
-        PAHLCount.setForeground(new java.awt.Color(0, 0, 0));
         PAHLCount.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         PAHLCount.setText("0");
 
         PAHL.setFont(new java.awt.Font("Roboto", 3, 12)); // NOI18N
-        PAHL.setForeground(new java.awt.Color(0, 0, 0));
         PAHL.setText("Escritorios: ");
 
         javax.swing.GroupLayout readyPAHLLayout = new javax.swing.GroupLayout(readyPAHL);
@@ -385,7 +232,7 @@ public class interfazSoMain extends javax.swing.JFrame {
             readyPAHLLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, readyPAHLLayout.createSequentialGroup()
                 .addGap(21, 21, 21)
-                .addComponent(PAHL, javax.swing.GroupLayout.DEFAULT_SIZE, 80, Short.MAX_VALUE)
+                .addComponent(PAHL, javax.swing.GroupLayout.DEFAULT_SIZE, 112, Short.MAX_VALUE)
                 .addGap(28, 28, 28)
                 .addComponent(PAHLCount, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
@@ -406,12 +253,10 @@ public class interfazSoMain extends javax.swing.JFrame {
         timer.setEditable(false);
         timer.setBackground(new java.awt.Color(0, 255, 153));
         timer.setFont(new java.awt.Font("Lucida Sans Typewriter", 1, 12)); // NOI18N
-        timer.setForeground(new java.awt.Color(0, 0, 0));
         timer.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         timer.setText("0");
 
         todayIs.setFont(new java.awt.Font("Roboto", 3, 12)); // NOI18N
-        todayIs.setForeground(new java.awt.Color(0, 0, 0));
         todayIs.setText("Fecha: ");
 
         javax.swing.GroupLayout timeLayout = new javax.swing.GroupLayout(time);
@@ -421,7 +266,7 @@ public class interfazSoMain extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, timeLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(todayIs, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 32, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 90, Short.MAX_VALUE)
                 .addComponent(timer, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(24, 24, 24))
         );
@@ -444,8 +289,8 @@ public class interfazSoMain extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(tRemaing, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(3, 3, 3)
-                .addComponent(domsdayClock, javax.swing.GroupLayout.DEFAULT_SIZE, 66, Short.MAX_VALUE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(domsdayClock, javax.swing.GroupLayout.DEFAULT_SIZE, 182, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(time, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
         barBottomLayout.setVerticalGroup(
@@ -456,124 +301,23 @@ public class interfazSoMain extends javax.swing.JFrame {
                     .addComponent(tRemaing, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(domsdayClock, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap())
-            .addComponent(readyPAHL, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
             .addComponent(time, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(barBottomLayout.createSequentialGroup()
+                .addComponent(readyPAHL, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
 
-        jPanelPrincipal.add(barBottom, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 590, 600, 50));
-
-        reset.setFont(new java.awt.Font("RomanC", 1, 18)); // NOI18N
-        reset.setForeground(new java.awt.Color(0, 0, 0));
-        reset.setIcon(new javax.swing.ImageIcon(getClass().getResource("/interfazSOComponents/reset .png"))); // NOI18N
-        reset.setText("Reinicio");
-        reset.setBorderPainted(false);
-        reset.setContentAreaFilled(false);
-        reset.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        reset.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        reset.setPressedIcon(new javax.swing.ImageIcon(getClass().getResource("/interfazSOComponents/resetPisado.png"))); // NOI18N
-        reset.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
-        reset.setVerticalTextPosition(javax.swing.SwingConstants.TOP);
-        reset.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                resetActionPerformed(evt);
-            }
-        });
-        jPanelPrincipal.add(reset, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 220, 130, -1));
-
-        add.setFont(new java.awt.Font("RomanC", 1, 18)); // NOI18N
-        add.setForeground(new java.awt.Color(0, 0, 0));
-        add.setIcon(new javax.swing.ImageIcon(getClass().getResource("/interfazSOComponents/add.png"))); // NOI18N
-        add.setText("Agregar");
-        add.setBorderPainted(false);
-        add.setContentAreaFilled(false);
-        add.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        add.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        add.setPressedIcon(new javax.swing.ImageIcon(getClass().getResource("/interfazSOComponents/addPisado.png"))); // NOI18N
-        add.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
-        add.setVerticalTextPosition(javax.swing.SwingConstants.TOP);
-        add.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                addActionPerformed(evt);
-            }
-        });
-        jPanelPrincipal.add(add, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 220, 130, 160));
-
-        delete.setFont(new java.awt.Font("RomanC", 1, 18)); // NOI18N
-        delete.setForeground(new java.awt.Color(0, 0, 0));
-        delete.setIcon(new javax.swing.ImageIcon(getClass().getResource("/interfazSOComponents/delete.png"))); // NOI18N
-        delete.setText("Eliminar");
-        delete.setBorderPainted(false);
-        delete.setContentAreaFilled(false);
-        delete.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        delete.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        delete.setPressedIcon(new javax.swing.ImageIcon(getClass().getResource("/interfazSOComponents/deletePisado.png"))); // NOI18N
-        delete.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
-        delete.setVerticalTextPosition(javax.swing.SwingConstants.TOP);
-        delete.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                deleteActionPerformed(evt);
-            }
-        });
-        jPanelPrincipal.add(delete, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 220, 130, -1));
-
-        logo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/interfazSOComponents/ikea_logo_icon.png"))); // NOI18N
-        logo.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jPanelPrincipal.add(logo, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 30, 460, 150));
-
-        infoPanel.setBackground(new java.awt.Color(204, 204, 204));
-        infoPanel.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        infoPanel.setForeground(new java.awt.Color(153, 153, 153));
-
-        bossInformed.setFont(new java.awt.Font("RomanC", 1, 14)); // NOI18N
-        bossInformed.setForeground(new java.awt.Color(0, 0, 0));
-        bossInformed.setText("El jefe esta durmiendo");
-
-        maganerInformer.setFont(new java.awt.Font("RomanC", 1, 14)); // NOI18N
-        maganerInformer.setForeground(new java.awt.Color(0, 0, 0));
-        maganerInformer.setText("El gerente esta durmiendo");
-
-        javax.swing.GroupLayout infoPanelLayout = new javax.swing.GroupLayout(infoPanel);
-        infoPanel.setLayout(infoPanelLayout);
-        infoPanelLayout.setHorizontalGroup(
-            infoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(infoPanelLayout.createSequentialGroup()
-                .addContainerGap(119, Short.MAX_VALUE)
-                .addGroup(infoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, infoPanelLayout.createSequentialGroup()
-                        .addComponent(maganerInformer)
-                        .addGap(98, 98, 98))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, infoPanelLayout.createSequentialGroup()
-                        .addComponent(bossInformed)
-                        .addGap(114, 114, 114))))
-        );
-        infoPanelLayout.setVerticalGroup(
-            infoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(infoPanelLayout.createSequentialGroup()
-                .addGap(22, 22, 22)
-                .addComponent(bossInformed)
-                .addGap(26, 26, 26)
-                .addComponent(maganerInformer)
-                .addContainerGap(20, Short.MAX_VALUE))
-        );
-
-        jPanelPrincipal.add(infoPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 440, 450, -1));
-
-        Info.setBackground(new java.awt.Color(0, 0, 0));
-        Info.setFont(new java.awt.Font("RomanC", 1, 16)); // NOI18N
-        Info.setForeground(new java.awt.Color(0, 0, 0));
-        Info.setText("Informacion:");
-        jPanelPrincipal.add(Info, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 410, 150, 20));
+        jPanelPrincipal.add(barBottom, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 430, 800, 50));
 
         minizar.setBackground(new java.awt.Color(255, 204, 0));
         minizar.setFont(new java.awt.Font("Dialog", 1, 12)); // NOI18N
-        minizar.setForeground(new java.awt.Color(0, 0, 0));
         minizar.setText("_");
         minizar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 minizarActionPerformed(evt);
             }
         });
-        jPanelPrincipal.add(minizar, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, 10, 40, -1));
+        jPanelPrincipal.add(minizar, new org.netbeans.lib.awtextra.AbsoluteConstraints(700, 10, 40, -1));
 
         cerrar.setBackground(new java.awt.Color(204, 0, 0));
         cerrar.setFont(new java.awt.Font("Dialog", 1, 12)); // NOI18N
@@ -584,34 +328,343 @@ public class interfazSoMain extends javax.swing.JFrame {
                 cerrarActionPerformed(evt);
             }
         });
-        jPanelPrincipal.add(cerrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(770, 10, 40, -1));
+        jPanelPrincipal.add(cerrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(750, 10, 40, -1));
 
-        getContentPane().add(jPanelPrincipal, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 820, 630));
+        registerProducers.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        registerProducers.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        produceScrew.setBackground(new java.awt.Color(255, 255, 255));
+        produceScrew.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+
+        screwCount.setEditable(false);
+        screwCount.setFont(new java.awt.Font("Lucida Sans Typewriter", 1, 12)); // NOI18N
+        screwCount.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        screwCount.setText("1");
+
+        screwName.setFont(new java.awt.Font("Roboto", 0, 12)); // NOI18N
+        screwName.setText("Tornillos:");
+        screwName.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
+
+        javax.swing.GroupLayout produceScrewLayout = new javax.swing.GroupLayout(produceScrew);
+        produceScrew.setLayout(produceScrewLayout);
+        produceScrewLayout.setHorizontalGroup(
+            produceScrewLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, produceScrewLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(screwName)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 41, Short.MAX_VALUE)
+                .addComponent(screwCount, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE))
+        );
+        produceScrewLayout.setVerticalGroup(
+            produceScrewLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(produceScrewLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addComponent(screwCount, javax.swing.GroupLayout.DEFAULT_SIZE, 30, Short.MAX_VALUE)
+                .addComponent(screwName))
+        );
+
+        registerProducers.add(produceScrew, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 150, 200, -1));
+
+        produceTable.setBackground(new java.awt.Color(255, 255, 255));
+        produceTable.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+
+        tableCount.setEditable(false);
+        tableCount.setFont(new java.awt.Font("Lucida Sans Typewriter", 1, 12)); // NOI18N
+        tableCount.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        tableCount.setText("1");
+
+        tableName.setFont(new java.awt.Font("Roboto", 0, 12)); // NOI18N
+        tableName.setText("Tablas:");
+        tableName.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
+
+        javax.swing.GroupLayout produceTableLayout = new javax.swing.GroupLayout(produceTable);
+        produceTable.setLayout(produceTableLayout);
+        produceTableLayout.setHorizontalGroup(
+            produceTableLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, produceTableLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(tableName)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 51, Short.MAX_VALUE)
+                .addComponent(tableCount, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE))
+        );
+        produceTableLayout.setVerticalGroup(
+            produceTableLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(produceTableLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addComponent(tableCount, javax.swing.GroupLayout.DEFAULT_SIZE, 30, Short.MAX_VALUE)
+                .addComponent(tableName))
+        );
+
+        registerProducers.add(produceTable, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 100, 200, -1));
+
+        producePaw.setBackground(new java.awt.Color(255, 255, 255));
+        producePaw.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+
+        pawCount.setEditable(false);
+        pawCount.setFont(new java.awt.Font("Lucida Sans Typewriter", 1, 12)); // NOI18N
+        pawCount.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        pawCount.setText("1");
+
+        pawName.setFont(new java.awt.Font("Roboto", 0, 12)); // NOI18N
+        pawName.setText("Patas:");
+        pawName.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
+
+        javax.swing.GroupLayout producePawLayout = new javax.swing.GroupLayout(producePaw);
+        producePaw.setLayout(producePawLayout);
+        producePawLayout.setHorizontalGroup(
+            producePawLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, producePawLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(pawName)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(pawCount, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE))
+        );
+        producePawLayout.setVerticalGroup(
+            producePawLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(producePawLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addComponent(pawCount, javax.swing.GroupLayout.DEFAULT_SIZE, 30, Short.MAX_VALUE)
+                .addComponent(pawName))
+        );
+
+        registerProducers.add(producePaw, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 50, 200, 36));
+
+        assemblerData.setBackground(new java.awt.Color(255, 255, 255));
+        assemblerData.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+
+        assemblerCount.setEditable(false);
+        assemblerCount.setFont(new java.awt.Font("Lucida Sans Typewriter", 1, 12)); // NOI18N
+        assemblerCount.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        assemblerCount.setText("1");
+
+        assemblerName.setFont(new java.awt.Font("Roboto", 0, 12)); // NOI18N
+        assemblerName.setText("Trabajando:");
+        assemblerName.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
+
+        javax.swing.GroupLayout assemblerDataLayout = new javax.swing.GroupLayout(assemblerData);
+        assemblerData.setLayout(assemblerDataLayout);
+        assemblerDataLayout.setHorizontalGroup(
+            assemblerDataLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, assemblerDataLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(assemblerName)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(assemblerCount, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE))
+        );
+        assemblerDataLayout.setVerticalGroup(
+            assemblerDataLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(assemblerDataLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addComponent(assemblerCount, javax.swing.GroupLayout.DEFAULT_SIZE, 30, Short.MAX_VALUE)
+                .addComponent(assemblerName))
+        );
+
+        registerProducers.add(assemblerData, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 240, 200, -1));
+
+        productor.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        productor.setFont(new java.awt.Font("Roboto", 1, 16)); // NOI18N
+        productor.setText("Productores:");
+        registerProducers.add(productor, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 20, -1, -1));
+
+        assembler.setFont(new java.awt.Font("Roboto", 1, 14)); // NOI18N
+        assembler.setText("Ensambladores:");
+        registerProducers.add(assembler, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 200, -1, -1));
+
+        addPaw.setText(">>");
+        addPaw.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                addPawActionPerformed(evt);
+            }
+        });
+        registerProducers.add(addPaw, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 50, 45, 34));
+
+        addTable.setText(">>");
+        addTable.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                addTableActionPerformed(evt);
+            }
+        });
+        registerProducers.add(addTable, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 100, 45, 34));
+
+        addScrew.setText(">>");
+        addScrew.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                addScrewActionPerformed(evt);
+            }
+        });
+        registerProducers.add(addScrew, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 150, 45, 34));
+
+        addAsem.setText(">>");
+        addAsem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                addAsemActionPerformed(evt);
+            }
+        });
+        registerProducers.add(addAsem, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 240, 45, 34));
+
+        popAsem.setText("<<");
+        popAsem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                popAsemActionPerformed(evt);
+            }
+        });
+        registerProducers.add(popAsem, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 240, 45, 34));
+
+        popScrew.setText("<<");
+        popScrew.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                popScrewActionPerformed(evt);
+            }
+        });
+        registerProducers.add(popScrew, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 150, 45, 34));
+
+        popTable.setText("<<");
+        popTable.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                popTableActionPerformed(evt);
+            }
+        });
+        registerProducers.add(popTable, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 100, 45, 34));
+
+        popPaw.setText("<<");
+        popPaw.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                popPawActionPerformed(evt);
+            }
+        });
+        registerProducers.add(popPaw, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 50, 45, 34));
+
+        jPanelPrincipal.add(registerProducers, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 60, 320, 370));
+
+        registersProducts1.setBackground(new java.awt.Color(255, 204, 102));
+        registersProducts1.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        registersProducts1.setForeground(new java.awt.Color(51, 51, 51));
+        registersProducts1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        produce1.setFont(new java.awt.Font("Roboto", 1, 16)); // NOI18N
+        produce1.setText("Productos:");
+        registersProducts1.add(produce1, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 20, -1, -1));
+
+        productPaw1.setBackground(new java.awt.Color(255, 255, 255));
+        productPaw1.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+
+        pPawCount1.setEditable(false);
+        pPawCount1.setFont(new java.awt.Font("Lucida Sans Typewriter", 1, 12)); // NOI18N
+        pPawCount1.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        pPawCount1.setText("0");
+
+        pPaw1.setFont(new java.awt.Font("Roboto", 0, 12)); // NOI18N
+        pPaw1.setText("Patas:");
+        pPaw1.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
+
+        javax.swing.GroupLayout productPaw1Layout = new javax.swing.GroupLayout(productPaw1);
+        productPaw1.setLayout(productPaw1Layout);
+        productPaw1Layout.setHorizontalGroup(
+            productPaw1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, productPaw1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(pPaw1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 66, Short.MAX_VALUE)
+                .addComponent(pPawCount1, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE))
+        );
+        productPaw1Layout.setVerticalGroup(
+            productPaw1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(productPaw1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addComponent(pPawCount1, javax.swing.GroupLayout.DEFAULT_SIZE, 30, Short.MAX_VALUE)
+                .addComponent(pPaw1))
+        );
+
+        registersProducts1.add(productPaw1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 50, 210, -1));
+
+        productScrew1.setBackground(new java.awt.Color(255, 255, 255));
+        productScrew1.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+
+        pScrewCount1.setEditable(false);
+        pScrewCount1.setFont(new java.awt.Font("Lucida Sans Typewriter", 1, 12)); // NOI18N
+        pScrewCount1.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        pScrewCount1.setText("0");
+
+        pScrew1.setFont(new java.awt.Font("Roboto", 0, 12)); // NOI18N
+        pScrew1.setText("Tornillos:");
+        pScrew1.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
+
+        javax.swing.GroupLayout productScrew1Layout = new javax.swing.GroupLayout(productScrew1);
+        productScrew1.setLayout(productScrew1Layout);
+        productScrew1Layout.setHorizontalGroup(
+            productScrew1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, productScrew1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(pScrew1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 51, Short.MAX_VALUE)
+                .addComponent(pScrewCount1, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE))
+        );
+        productScrew1Layout.setVerticalGroup(
+            productScrew1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(productScrew1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addComponent(pScrewCount1, javax.swing.GroupLayout.DEFAULT_SIZE, 30, Short.MAX_VALUE)
+                .addComponent(pScrew1))
+        );
+
+        registersProducts1.add(productScrew1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 150, 210, -1));
+
+        productTable1.setBackground(new java.awt.Color(255, 255, 255));
+        productTable1.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+
+        pTableCount1.setEditable(false);
+        pTableCount1.setFont(new java.awt.Font("Lucida Sans Typewriter", 1, 12)); // NOI18N
+        pTableCount1.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        pTableCount1.setText("0");
+
+        jLabel12.setFont(new java.awt.Font("Roboto", 0, 12)); // NOI18N
+        jLabel12.setText("Tablas:");
+        jLabel12.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
+
+        javax.swing.GroupLayout productTable1Layout = new javax.swing.GroupLayout(productTable1);
+        productTable1.setLayout(productTable1Layout);
+        productTable1Layout.setHorizontalGroup(
+            productTable1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, productTable1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel12)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 61, Short.MAX_VALUE)
+                .addComponent(pTableCount1, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE))
+        );
+        productTable1Layout.setVerticalGroup(
+            productTable1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(productTable1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addComponent(pTableCount1, javax.swing.GroupLayout.DEFAULT_SIZE, 30, Short.MAX_VALUE)
+                .addComponent(jLabel12))
+        );
+
+        registersProducts1.add(productTable1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 100, 210, -1));
+
+        simulate.setIcon(new javax.swing.ImageIcon(getClass().getResource("/interfazSOComponents/stop.png"))); // NOI18N
+        simulate.setBorderPainted(false);
+        simulate.setContentAreaFilled(false);
+        simulate.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        simulate.setPressedIcon(new javax.swing.ImageIcon(getClass().getResource("/interfazSOComponents/iniciarPisado.png"))); // NOI18N
+        simulate.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/interfazSOComponents/stopPisado.png"))); // NOI18N
+        simulate.setRolloverSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/interfazSOComponents/iniciarPisado.png"))); // NOI18N
+        simulate.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/interfazSOComponents/iniciarEjecucion.png"))); // NOI18N
+        simulate.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                simulateActionPerformed(evt);
+            }
+        });
+        registersProducts1.add(simulate, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 210, 138, 138));
+
+        jPanelPrincipal.add(registersProducts1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 60, 250, 370));
+
+        logo.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        logo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/interfazSOComponents/ikea_logo_icon.png"))); // NOI18N
+        logo.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        jPanelPrincipal.add(logo, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 10, -1, 40));
+
+        getContentPane().add(jPanelPrincipal, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 800, -1));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
             
-    private void simulateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_simulateActionPerformed
-        // TODO add your handling code here:
-        if(simulate.isSelected()){
-            System.out.println("¡El simulador se ha activado!");
-            simulation = true;
-        }else{
-            System.out.println("¡La simulacion se ha desactivado!");
-            simulation = false;
-        }
-    }//GEN-LAST:event_simulateActionPerformed
-
-    private void addActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addActionPerformed
-        // TODO add your handling code here:
-        System.out.println("Agregar: ");
-    }//GEN-LAST:event_addActionPerformed
-
-    private void deleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteActionPerformed
-        // TODO add your handling code here:
-        System.out.println("Eliminar:");
-    }//GEN-LAST:event_deleteActionPerformed
-
+    // ==============================================================================================================
+    //      >> Boton de reinicio:
+    // ==============================================================================================================
+    
     private void resetActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_resetActionPerformed
         // TODO add your handling code here:
         
@@ -629,7 +682,11 @@ public class interfazSoMain extends javax.swing.JFrame {
         }
           
     }//GEN-LAST:event_resetActionPerformed
-
+        
+    // ==============================================================================================================
+    //      >> Botones de cerrar y reducir ventana:
+    // ==============================================================================================================
+    
     private void cerrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cerrarActionPerformed
         // TODO add your handling code here:
         if(simulation){
@@ -650,6 +707,65 @@ public class interfazSoMain extends javax.swing.JFrame {
         System.out.println("Ventana minimizada.");
         this.setExtendedState(ICONIFIED);
     }//GEN-LAST:event_minizarActionPerformed
+    // ==============================================================================================================
+    //      >> Botones de Contratar y Despedir:
+    // ==============================================================================================================
+    
+    private void addPawActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addPawActionPerformed
+        // TODO add your handling code here:
+        pawCount.setText(fun.contratar(4, pawCount.getText(), "patas"));
+    }//GEN-LAST:event_addPawActionPerformed
+
+    private void addTableActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addTableActionPerformed
+        // TODO add your handling code here:
+        tableCount.setText(fun.contratar(4, tableCount.getText(), "tablas"));
+    }//GEN-LAST:event_addTableActionPerformed
+
+    private void addScrewActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addScrewActionPerformed
+        // TODO add your handling code here:
+        screwCount.setText(fun.contratar(3, screwCount.getText(), "tornillos"));
+    }//GEN-LAST:event_addScrewActionPerformed
+
+    private void addAsemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addAsemActionPerformed
+        // TODO add your handling code here:
+        assemblerCount.setText(fun.contratar(3, assemblerCount.getText(), "ensambladores"));
+    }//GEN-LAST:event_addAsemActionPerformed
+
+    private void popAsemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_popAsemActionPerformed
+        // TODO add your handling code here:
+        assemblerCount.setText(fun.despedir(assemblerCount.getText(), "ensambladores"));
+    }//GEN-LAST:event_popAsemActionPerformed
+
+    private void popScrewActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_popScrewActionPerformed
+        // TODO add your handling code here:
+        screwCount.setText(fun.despedir(screwCount.getText(), "tornillos"));
+    }//GEN-LAST:event_popScrewActionPerformed
+
+    private void popTableActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_popTableActionPerformed
+        // TODO add your handling code here:
+        tableCount.setText(fun.despedir(tableCount.getText(), "tablas"));
+    }//GEN-LAST:event_popTableActionPerformed
+
+    private void popPawActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_popPawActionPerformed
+        // TODO add your handling code here:
+        pawCount.setText(fun.despedir(pawCount.getText(), "patas"));
+    }//GEN-LAST:event_popPawActionPerformed
+
+    // ==============================================================================================================
+    //      >> Boton de Simulacion:
+    // ==============================================================================================================
+    
+    private void simulateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_simulateActionPerformed
+        // TODO add your handling code here:
+        if(simulate.isSelected()){ // Si la simulacion se esta ejecutando, no puedes cerrar ni reiniciar los valores, por seguridad
+            System.out.println("¡El simulador se ha activado!");
+            simulation = true;  // Avisa al sistema que la simulacion esta en movimiento
+        }else{
+            System.out.println("¡La simulacion se ha desactivado!");
+            simulation = false; // Avisa al sistema que la simulacion se detuvo
+        }
+    
+    }//GEN-LAST:event_simulateActionPerformed
 
     /**
      * @param args the command line arguments
@@ -687,10 +803,15 @@ public class interfazSoMain extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel BossInfo;
     private javax.swing.JLabel Info;
+    private javax.swing.JLabel ManagerInfo;
     private javax.swing.JLabel PAHL;
     private javax.swing.JTextField PAHLCount;
-    private javax.swing.JButton add;
+    private javax.swing.JButton addAsem;
+    private javax.swing.JButton addPaw;
+    private javax.swing.JButton addScrew;
+    private javax.swing.JButton addTable;
     private java.awt.Label assembler;
     private javax.swing.JTextField assemblerCount;
     private javax.swing.JPanel assemblerData;
@@ -698,31 +819,36 @@ public class interfazSoMain extends javax.swing.JFrame {
     private javax.swing.JPanel barBottom;
     private javax.swing.JLabel bossInformed;
     private javax.swing.JButton cerrar;
-    private javax.swing.JButton delete;
     private javax.swing.JTextField domsdayClock;
     private javax.swing.JPanel infoPanel;
-    private javax.swing.JLabel jLabel11;
+    private javax.swing.JLabel jLabel12;
     private javax.swing.JPanel jPanelPrincipal;
     private javax.swing.JLabel logo;
     private javax.swing.JLabel maganerInformer;
     private javax.swing.JButton minizar;
-    private javax.swing.JLabel pPaw;
-    private javax.swing.JTextField pPawCount;
-    private javax.swing.JLabel pScrew;
-    private javax.swing.JTextField pScrewCount;
-    private javax.swing.JTextField pTableCount;
+    private javax.swing.JLabel pPaw1;
+    private javax.swing.JTextField pPawCount1;
+    private javax.swing.JLabel pScrew1;
+    private javax.swing.JTextField pScrewCount1;
+    private javax.swing.JTextField pTableCount1;
     private javax.swing.JTextField pawCount;
     private javax.swing.JLabel pawName;
-    private java.awt.Label produce;
+    private javax.swing.JButton popAsem;
+    private javax.swing.JButton popPaw;
+    private javax.swing.JButton popScrew;
+    private javax.swing.JButton popTable;
+    private java.awt.Label produce1;
     private javax.swing.JPanel producePaw;
     private javax.swing.JPanel produceScrew;
     private javax.swing.JPanel produceTable;
-    private javax.swing.JPanel productPaw;
-    private javax.swing.JPanel productScrew;
-    private javax.swing.JPanel productTable;
+    private javax.swing.JPanel productPaw1;
+    private javax.swing.JPanel productScrew1;
+    private javax.swing.JPanel productTable1;
     private java.awt.Label productor;
     private javax.swing.JPanel readyPAHL;
-    private javax.swing.JPanel registers;
+    private javax.swing.JPanel registerProducers;
+    private javax.swing.JPanel registerinformation;
+    private javax.swing.JPanel registersProducts1;
     private javax.swing.JButton reset;
     private javax.swing.JTextField screwCount;
     private javax.swing.JLabel screwName;
